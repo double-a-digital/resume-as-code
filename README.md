@@ -1,14 +1,16 @@
 <img width="867" height="265" alt="resume-as-code" src="https://github.com/user-attachments/assets/ab42ab59-e8f3-49d9-a193-40007a9a99e0" />
 
-# 📄 Resume as Code </>
+---
 
-Manage your resume in a single resume.json file. Automatically generate a personal resume website and downloadable PDF hosted for free via GitHub Pages.
+# 📄 Introduction </>
 
-Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://github.com/skoenig/jsonresume-theme-engineering)
+Manage your resume in a single `resume.json` file. 
+
+Automatically generate a website of a professional resume with downloadable PDF hosted for free via GitHub Pages.
+
+Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://github.com/skoenig/jsonresume-theme-engineering) + [GH Pages](https://pages.github.com/)
 
 Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
-
----
 
 ## 🚀 Features
 
@@ -22,8 +24,6 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
 
 - Clean Theme - Minimal, readable, and ATS-friendly
 
----
-
 ## 🔧 How It Works
 
 1. You update resume.json
@@ -34,12 +34,9 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
 
     💡 This lets you keep the build process private, and make your resume public only when you need to.
 
----
-
 ## 🔑 Pre-requisites
 
 1. Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
-
    - Name it something like Resume Automation
 
    - Scope: repo
@@ -74,28 +71,26 @@ git commit -m "feat: initial commit"
 git push origin main
 ```
 
----
-
 ## 💻 Run Locally (Optional)
 
 Want to preview your resume before pushing?
 
 Powered by: [resumed](https://github.com/rbardini/resumed)
 
-1. Install Node.js & Playwright
+1. Install dependencies
 
 ```bash
 npm install
 npx playwright install chromium
 ```
 
-1. Create Your Resume
+2. Create your `resume.json`
 
 ```bash
 cp sample-resume.json resume.json
 ```
 
-1. Generate HTML & PDF
+3. Generate HTML & PDF
 
 ```bash
 npm run export-html
@@ -106,7 +101,9 @@ You’ll find `index.html` and `resume.pdf` in the project folder.
 
 ## Why This?
 
-This template gives you full control. Version it with Git, write in JSON, and generate polished outputs with developer tools.
+This template gives you full control.
+
+Version it with Git, write in JSON, and generate polished outputs with developer tools.
 
 ✅ No WYSIWYG
 
