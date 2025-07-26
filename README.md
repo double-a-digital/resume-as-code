@@ -1,78 +1,71 @@
 # 📄 Resume as Code </>
 
-Manage your resume in a single JSON file `resume.json` and auto-generate a free site hosted by GitHub with downloadable PDF.
+Manage your resume in a single resume.json file. Automatically generate a personal resume website and downloadable PDF hosted for free via GitHub Pages.
 
 Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://github.com/skoenig/jsonresume-theme-engineering)
 
-No fancy stuffs, just KISS resume for ATS following these [principles](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
+Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
 
 ---
 
 ## 🚀 Features
 
-- Edit One File - Your resume lives in resume.json
+- One Source of Truth - Just edit resume.json
 
-- Auto Builds - HTML and PDF generated on every push
+- Automatic Builds - HTML & PDF generated on every push
 
-- Live Preview - Always up to date via GitHub Pages
+- Live Preview - Hosted with GitHub Pages
 
-- Download in PDF - Uses Playwright for better printed version
+- Ready-to-Download PDF - Built using Playwright for print-optimized formatting
 
-- Minimal theme - ATS-friendly for developers by developers
+- Clean Theme - Minimal, readable, and ATS-friendly
 
 ---
 
 ## 🔧 How It Works
 
-1. Update resume.json
+1. You update resume.json
 
-2. Push to main branch
+2. GitHub Actions builds the site and PDF automatically
 
-3. GitHub Actions:
-   - Build artifacts needed for the resume contents
-   - Deploy them to a separate GitHub repository
-   - GitHub Pages automatically host the webpage on that repository
+3. Output is deployed to a separate repository for hosting via GitHub Pages
 
-4. Reason the GitHub Pages for the resume contents is on a separate repository is so we can control its visibility (eg: toggle it to public only for when a recruiter requests for it)
+    💡 This lets you keep the build process private, and make your resume public only when you need to.
 
 ---
 
-## ⚙️ Pre-requisites
+## 🔑 Pre-requisites
 
-1. Go to your GitHub **Settings** > **Developer settings** > **Personal access tokens** > **Tokens (classic)** and click Generate new token.
+1. Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
 
-2. Give the token a name and check the repo scope. This will grant it permission to access and write to repositories.
+   - Name it something like Resume Automation
 
-3. Copy the generated token immediately. You won't be able to see it again.
+   - Scope: repo
 
-# 🛠️ Get Started For Your Own
+   - Copy and save the token
 
-1. Click "Use this template" to copy the repo. Make it Private.
+# 🛠️ Set It Up
 
-2. In the left sidebar, navigate to **Secrets and variables** > **Actions**.
+1. Click `Use this template` (top of this repo) → Choose **Private**
 
-3. Create New repo secret with token generated previously
-   -  Name: ACTIONS_PAT
-      -  Value: Your GitHub PAT.
+2. Go to: **Settings** → **Secrets and variables** → **Actions**
+   - Secrets
+      - ACTIONS_PAT → your GitHub token from earlier
+   - Variables
+      - DEST_USERNAME → your GitHub username
+      - DEST_REPO_NAME → name of the destination repo (e.g. my-resume)
 
-4. Create New repo variables:
-   - Name: DEST_USERNAME
-        - Value: Your GitHub username.
-   - Name: DEST_REPO_NAME
-        - Value: The name of the destination repository (eg: my-resume).
+3. Create your destination repo
+   -  Name it something like my-resume
+   -  Initialize with a README
 
-5. Create a new GitHub repository (eg: my-resume) and initialize with README file.
+4. Go to destination repo **Settings** → **Pages** → Choose branch: **main** → **Save**
 
-6. Go to the new repository **Settings** > **Pages** > **Branch** (select **main**) > **Save**
+5. Clone your template repo & set up
 
-7. Clone the repository made from the template previously
-```
-git clone <your-repo-url>
+```bash
+git clone <your-template-repo-url>
 cd <your-repo-name>
-```
-
-8. Copy the sample resume and start editing.
-```
 cp sample-resume.json resume.json
 git add resume.json
 git commit -m "feat: initial commit"
@@ -83,25 +76,36 @@ git push origin main
 
 ## 💻 Run Locally (Optional)
 
-If you want to see how it look like before publishing, here's how.
+Want to preview your resume before pushing?
 
 Powered by: [resumed](https://github.com/rbardini/resumed)
 
 1. Install Node.js & Playwright
-```
+
+```bash
 npm install
 npx playwright install chromium
 ```
 
-2. Create Your Resume
-```
+1. Create Your Resume
+
+```bash
 cp sample-resume.json resume.json
 ```
 
-3. Generate HTML & PDF
-```
+1. Generate HTML & PDF
+
+```bash
 npm run export-html
 npm run export-pdf
 ```
 
-You’ll find index.html and resume.pdf in the project folder.
+You’ll find `index.html` and `resume.pdf` in the project folder.
+
+## Why This?
+
+Most resume builders hide the details. This template gives you full control. Version it with Git, write in JSON, and generate polished outputs with developer tools.
+
+✅ No WYSIWYG
+✅ No fees
+✅ Just code and GitHub Actions magic
