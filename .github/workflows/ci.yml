@@ -73,5 +73,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
           DEST_USERNAME: ${{ vars.DEST_USERNAME }}
           DEST_REPO_NAME: ${{ vars.DEST_REPO_NAME }}
-          COMMIT_MESSAGE: "Deploy resume from ${{ github.sha }}"
+          COMMIT_MESSAGE: "chore: updated resume from ${{ github.sha }}"
         run: ./scripts/deploy-resume.sh
