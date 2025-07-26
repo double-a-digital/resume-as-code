@@ -29,9 +29,11 @@ No fancy stuffs, just KISS resume for ATS following these [principles](https://w
 2. Push to main branch
 
 3. GitHub Actions:
-   - Generates index.html and resume.pdf
-   - Deploys them to the gh-pages branch
-   - GitHub Pages deploys the webpage
+   - Build artifacts needed for the resume contents
+   - Deploy them to a separate GitHub repository
+   - GitHub Pages automatically host the webpage on that repository
+
+4. Reason the GitHub Pages for the resume contents is on a separate repository is so we can control its visibility (eg: toggle it to public only for when a recruiter requests for it)
 
 ---
 
@@ -47,29 +49,29 @@ No fancy stuffs, just KISS resume for ATS following these [principles](https://w
 
 1. Click "Use this template" to copy the repo. Make it Private.
 
-2. Create a new empty GitHub repository for the live site.
+2. In the left sidebar, navigate to **Secrets and variables** > **Actions**.
 
-3. In the repository created from the template, go to Settings.
-
-4. In the left sidebar, navigate to **Secrets and variables** > **Actions**.
-
-5. Create New repo secret with token generated previously
+3. Create New repo secret with token generated previously
    -  Name: ACTIONS_PAT
       -  Value: Your GitHub PAT.
 
-6. Create New repo variables:
+4. Create New repo variables:
    - Name: DEST_USERNAME
         - Value: Your GitHub username.
    - Name: DEST_REPO_NAME
-        - Value: The name of the destination repository (the live site).
+        - Value: The name of the destination repository (eg: my-resume).
 
-7. Clone Your Repo
+5. Create a new GitHub repository (eg: my-resume) and initialize with README file.
+
+6. Go to the new repository **Settings** > **Pages** > **Branch** (select **main**) > **Save**
+
+7. Clone the repository made from the template previously
 ```
 git clone <your-repo-url>
 cd <your-repo-name>
 ```
 
-8. Create Your Resume
+8. Copy the sample resume and start editing.
 ```
 cp sample-resume.json resume.json
 git add resume.json
