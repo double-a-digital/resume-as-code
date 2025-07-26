@@ -1,3 +1,5 @@
+<img width="867" height="265" alt="resume-as-code" src="https://github.com/user-attachments/assets/ab42ab59-e8f3-49d9-a193-40007a9a99e0" />
+
 # 📄 Resume as Code </>
 
 Manage your resume in a single resume.json file. Automatically generate a personal resume website and downloadable PDF hosted for free via GitHub Pages.
