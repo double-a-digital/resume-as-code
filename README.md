@@ -102,14 +102,14 @@ npm run export-pdf
 
 You’ll find `index.html` and `resume.pdf` in the project folder.
 
-## Why This?
+## 🤖 Why This?
 
 This template gives you full control.
 
 Version it with Git, write in JSON, and generate polished outputs with developer tools.
 
-✅ No WYSIWYG
+✅ No un-versioned resume edits
 
-✅ No fees
+✅ No monthly subscription fees
 
 ✅ Just code and GitHub Actions magic
