@@ -14,33 +14,31 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
 
 ## 🚀 Features
 
-- One Source of Truth - Just edit resume.json
+- One Source of Truth - Just edit `resume.json`
 
-- Automatic Builds - HTML & PDF generated on every push
+- Automatic Builds - Website generated on every push
 
-- Live Preview - Hosted with GitHub Pages
+- Live Website - Hosted with GitHub Pages for free
 
-- Ready-to-Download PDF - Built using Playwright for print-optimized formatting
+- Download PDF - Print-optimized formatting version included
 
-- Clean Theme - Minimal, readable, and ATS-friendly
+- Clean Theme - Minimal, readable and ATS-friendly
 
 ## 🔧 How It Works
 
-1. You update resume.json
+1. You update `resume.json`
 
 2. GitHub Actions builds the site and PDF automatically
 
-3. Output is deployed to a separate repository for hosting via GitHub Pages
+3. Output is deployed to a separate resume [repository](https://github.com/opariffazman/sample-resume) for hosting via GitHub Pages
 
-    💡 This lets you keep the build process private, and make your resume public only when you need to.
+    💡 This lets you keep the commit history private, and make only your live resume public whenever you need to
 
 ## 🔑 Pre-requisites
 
 1. Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
-   - Name it something like Resume Automation
-
+   - Name it: `resume_token`
    - Scope: repo
-
    - Copy and save the token
 
 # 🛠️ Set It Up
@@ -52,15 +50,16 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
       - ACTIONS_PAT → your GitHub token from earlier
    - Variables
       - DEST_USERNAME → your GitHub username
-      - DEST_REPO_NAME → name of the destination repo (e.g. my-resume)
+      - DEST_REPO_NAME → name of the live repo (e.g. my-resume)
 
-3. Create your destination repo
-   -  Name it something like my-resume
+3. Create your live repo
+   -  Name it something like `my-resume`
    -  Initialize with a README
+   -  Make it Public for now
 
 4. Go to destination repo **Settings** → **Pages** → Choose branch: **main** → **Save**
 
-5. Clone your template repo & set up
+5. Clone your **template** repo & set up
 
 ```bash
 git clone <your-template-repo-url>
@@ -70,6 +69,10 @@ git add resume.json
 git commit -m "feat: initial commit"
 git push origin main
 ```
+
+All done you'll be able to access your live site at `https://<github_username>.github.io/<live_repo_name>`
+
+_Highly recommended to turn the live repo private afterwards and turn it public upon requested_
 
 ## 💻 Run Locally (Optional)
 
