@@ -4,7 +4,7 @@ set -e
 echo "Building resume..."
 
 echo "Install dependencies"
-npm install
+npm ci
 npx playwright install chromium
 
 echo "Generate HTML"
