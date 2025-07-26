@@ -106,8 +106,10 @@ You’ll find `index.html` and `resume.pdf` in the project folder.
 
 ## Why This?
 
-Most resume builders hide the details. This template gives you full control. Version it with Git, write in JSON, and generate polished outputs with developer tools.
+This template gives you full control. Version it with Git, write in JSON, and generate polished outputs with developer tools.
 
 ✅ No WYSIWYG
+
 ✅ No fees
+
 ✅ Just code and GitHub Actions magic
