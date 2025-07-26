@@ -1,0 +1,55 @@
+name: Build and Deploy Resume
+
+on:
+  push:
+    paths:
+      - 'resume.json'
+  workflow_dispatch:
+
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Make scripts executable
+      run: chmod +x scripts/build-resume.sh
+
+    - name: Build resume
+      run: ./scripts/build-resume.sh
+
+    - name: Upload resume artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: resume-files
+        path: |
+          index.html
+          resume.html
+          resume.pdf
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-resume
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download resume artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-files
+
+      - name: Make scripts executable
+        run: chmod +x scripts/deploy-resume.sh
+
+      - name: Deploy resume
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
+          DEST_USERNAME: ${{ vars.DEST_USERNAME }}
+          DEST_REPO_NAME: ${{ vars.DEST_REPO_NAME }}
+          COMMIT_MESSAGE: "Deploy resume from ${{ github.sha }}"
+        run: ./scripts/deploy-resume.sh
