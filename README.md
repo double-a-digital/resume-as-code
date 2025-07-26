@@ -69,7 +69,7 @@ git clone <your-repo-url>
 cd <your-repo-name>
 ```
 
-1. Create Your Resume
+8. Create Your Resume
 ```
 cp sample-resume.json resume.json
 git add resume.json
@@ -91,12 +91,12 @@ npm install
 npx playwright install chromium
 ```
 
-1. Create Your Resume
+2. Create Your Resume
 ```
 cp sample-resume.json resume.json
 ```
 
-1. Generate HTML & PDF
+3. Generate HTML & PDF
 ```
 npm run export-html
 npm run export-pdf
