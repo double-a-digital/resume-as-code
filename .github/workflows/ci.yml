@@ -43,6 +43,9 @@ jobs:
     strategy:
       matrix:
         resume_path: ${{ fromJson(needs.detect-changes.outputs.resumes) }}
+    outputs:
+      artifact_name: ${{ steps.build_step.outputs.artifact_name }}
+      resume_path: ${{ matrix.resume_path }}
 
     steps:
     - uses: actions/checkout@v4
@@ -76,6 +79,7 @@ jobs:
       run: chmod +x scripts/build-resume.sh
 
     - name: Build resume
+      id: build_step
       run: ./scripts/build-resume.sh
       env:
         FILE_PATH: ${{ matrix.resume_path }}
@@ -83,7 +87,7 @@ jobs:
     - name: Upload resume artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: resume-files-${{ matrix.resume_path }}
+        name: ${{ steps.build_step.outputs.artifact_name }}
         path: |
           ${{ matrix.resume_path }}/index.html
           ${{ matrix.resume_path }}/resume.html
@@ -95,7 +99,8 @@ jobs:
     if: ${{ needs.detect-changes.outputs.resumes != '[]' }}
     strategy:
       matrix:
-        resume_path: ${{ fromJson(needs.detect-changes.outputs.resumes) }}
+        resume_path: ${{ fromJson(needs.build.outputs.resume_path) }}
+        artifact_name: ${{ fromJson(needs.build.outputs.artifact_name) }}
 
     steps:
       - uses: actions/checkout@v4
@@ -103,7 +108,7 @@ jobs:
       - name: Download resume artifacts
         uses: actions/download-artifact@v4
         with:
-          name: resume-files-${{ matrix.resume_path }}
+          name: ${{ matrix.artifact_name }}
           path: ${{ matrix.resume_path }}
 
       - name: Make scripts executable

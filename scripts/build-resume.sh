@@ -28,3 +28,5 @@ echo '<a href="./resume.pdf" target="_blank"><p>Download PDF</p></a>' >> $FILE_P
 echo '<embed src="./resume.pdf" type="application/pdf" width="100%" height="100%" />' >> $FILE_PATH/resume.html
 
 echo "Resume build completed successfully!"
+
+echo "artifact_name=$(basename $FILE_PATH)" >> $GITHUB_OUTPUT
