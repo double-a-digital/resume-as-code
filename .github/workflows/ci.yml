@@ -26,7 +26,11 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" == "push" ]; then
             PATHS=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep 'resumes/.*/resume.json' | xargs -I {} dirname {} | sort -u)
-            JSON_PATHS=$(echo "$PATHS" | jq -R . | jq -s .)
+            if [ -z "$PATHS" ]; then
+              JSON_PATHS="[]"
+            else
+              JSON_PATHS=$(echo "$PATHS" | jq -R . | jq -cs .)
+            fi
             echo "resumes=$JSON_PATHS" >> $GITHUB_OUTPUT
           else
             echo 'resumes=["${{ github.event.inputs.file_path }}"]' >> $GITHUB_OUTPUT
