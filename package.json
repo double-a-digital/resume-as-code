@@ -5,7 +5,7 @@
     "resumed": "^6.0.0"
   },
   "scripts": {
-    "export-html": "npx resumed render $filePath/resume.json --output $filePath/index.html --theme jsonresume-theme-engineering",
-    "export-pdf": "node export-pdf.js $filePath"
+    "export-html": "npx resumed render $FILE_PATH/resume.json --output $FILE_PATH/index.html --theme jsonresume-theme-engineering",
+    "export-pdf": "node export-pdf.js $FILE_PATH"
   }
 }

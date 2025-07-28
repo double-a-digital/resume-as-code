@@ -43,6 +43,8 @@ jobs:
 
     - name: Build resume
       run: ./scripts/build-resume.sh
+      env:
+        FILE_PATH: resumes/sample
 
     - name: Upload resume artifacts
       uses: actions/upload-artifact@v4
@@ -70,6 +72,7 @@ jobs:
 
       - name: Deploy resume
         env:
+          FILE_PATH: resumes/sample
           GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
           DEST_USERNAME: ${{ vars.DEST_USERNAME }}
           DEST_REPO_NAME: ${{ vars.DEST_REPO_NAME }}

@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+echo "Validate required environment variables"
+if [ -z "$FILE_PATH" ] ; then
+    echo "Error: Required environment variables not set"
+    echo "Required: FILE_PATH"
+    exit 1
+fi
+
 echo "Building resume..."
 
 echo "Install dependencies"

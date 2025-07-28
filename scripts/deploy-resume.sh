@@ -28,7 +28,7 @@ echo "Clone destination repository"
 git clone "https://${GITHUB_TOKEN}@github.com/${DEST_USERNAME}/${DEST_REPO_NAME}.git" destination_repo
 
 echo "Copy resume files"
-cp index.html resume.html resume.pdf destination_repo/
+cp $FILE_PATH/index.html $FILE_PATH/resume.html $FILE_PATH/resume.pdf destination_repo/
 
 echo "Deploy if there are changes"
 cd destination_repo
@@ -41,7 +41,7 @@ if [ -n "$(git status --porcelain)" ]; then
     if [ "$REPO_CREATED" = true ]; then
       echo "Enabling GitHub Pages for the new repository..."
       # It can take a few seconds for the main branch to be recognized after push
-      sleep 5 
+      sleep 5
       gh api "repos/${DEST_USERNAME}/${DEST_REPO_NAME}/pages" \
         --method POST \
         -H "Accept: application/vnd.github+json" \
