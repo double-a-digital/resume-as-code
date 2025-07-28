@@ -38,7 +38,7 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
 
 1. Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
    - Name it: `resume_token`
-   - Scope: repo
+   - Scope: `repo` & `delete_repo`
    - Copy and save the token
 
 # 🛠️ Set It Up
