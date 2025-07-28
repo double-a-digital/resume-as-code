@@ -49,8 +49,9 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
    - Secrets
       - ACTIONS_PAT → your GitHub token from earlier
 
+3. Create your `resume.json`
 ```bash
-git clone <your-template-repo-url>
+git clone <your-repo-url>
 cd <your-repo-name>
 cp sample-resume.json resumes/job1/resume.json
 git add resumes/job1/resume.json
