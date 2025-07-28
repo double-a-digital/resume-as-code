@@ -2,11 +2,13 @@
 set -e
 
 echo "Validate required environment variables"
-if [ -z "$GITHUB_TOKEN" ] || [ -z "$DEST_USERNAME" ] || [ -z "$DEST_REPO_NAME" ]; then
+if [ -z "$GITHUB_TOKEN" ] || [ -z "$DEST_USERNAME" ]; then
     echo "Error: Required environment variables not set"
-    echo "Required: GITHUB_TOKEN, DEST_USERNAME, DEST_REPO_NAME"
+    echo "Required: GITHUB_TOKEN, DEST_USERNAME"
     exit 1
 fi
+
+DEST_REPO_NAME=$(basename "$FILE_PATH")-resume
 
 REPO_CREATED=false
 if ! gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" > /dev/null 2>&1; then
