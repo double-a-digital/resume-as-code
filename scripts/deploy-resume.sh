@@ -8,6 +8,16 @@ if [ -z "$GITHUB_TOKEN" ] || [ -z "$DEST_USERNAME" ] || [ -z "$DEST_REPO_NAME" ]
     exit 1
 fi
 
+echo "Authenticate with GitHub CLI"
+gh auth login --with-token <<< "$GITHUB_TOKEN"
+
+REPO_CREATED=false
+if ! gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" > /dev/null 2>&1; then
+  echo "Repository ${DEST_USERNAME}/${DEST_REPO_NAME} not found. Creating it..."
+  gh repo create "${DEST_USERNAME}/${DEST_REPO_NAME}" --public
+  REPO_CREATED=true
+fi
+
 echo "Deploying resume..."
 
 echo "Configure git"
@@ -27,6 +37,18 @@ if [ -n "$(git status --porcelain)" ]; then
     git commit -m "$COMMIT_MESSAGE"
     git push origin main
     echo "Resume deployed successfully!"
+
+    if [ "$REPO_CREATED" = true ]; then
+      echo "Enabling GitHub Pages for the new repository..."
+      # It can take a few seconds for the main branch to be recognized after push
+      sleep 5 
+      gh api "repos/${DEST_USERNAME}/${DEST_REPO_NAME}/pages" \
+        --method POST \
+        -H "Accept: application/vnd.github+json" \
+        -f source[branch]='main' \
+        -f source[path]='/'
+      echo "GitHub Pages enabled."
+    fi
 else
     echo "No changes to deploy."
 fi
