@@ -3,12 +3,22 @@ name: Build and Deploy Resume
 on:
   push:
     paths:
-      - 'resume.json'
+      - 'resumes/**/resume.json'
   workflow_dispatch:
+    inputs:
+      file_path:
+        description: 'Path to the resume file (e.g., resumes/sample)'
+        required: true
+        default: 'resumes/sample'
+
+env:
+  FILE_PATH: ${{ github.event.inputs.file_path || 'resumes/sample' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      repo_name: ${{ steps.build_step.outputs.DEST_REPO_NAME }}
 
     steps:
     - uses: actions/checkout@v4
@@ -42,18 +52,19 @@ jobs:
       run: chmod +x scripts/build-resume.sh
 
     - name: Build resume
+      id: build_step
       run: ./scripts/build-resume.sh
       env:
-        FILE_PATH: resumes/sample
+        FILE_PATH: ${{ env.FILE_PATH }}
 
     - name: Upload resume artifacts
       uses: actions/upload-artifact@v4
       with:
         name: resume-files
         path: |
-          index.html
-          resume.html
-          resume.pdf
+          ${{ env.FILE_PATH }}/index.html
+          ${{ env.FILE_PATH }}/resume.html
+          ${{ env.FILE_PATH }}/resume.pdf
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,15 +77,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: resume-files
+          path: ${{ env.FILE_PATH }}
 
       - name: Make scripts executable
         run: chmod +x scripts/deploy-resume.sh
 
       - name: Deploy resume
         env:
-          FILE_PATH: resumes/sample
+          FILE_PATH: ${{ env.FILE_PATH }}
           GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
           DEST_USERNAME: ${{ vars.DEST_USERNAME }}
-          DEST_REPO_NAME: ${{ vars.DEST_REPO_NAME }}
+          DEST_REPO_NAME: ${{ needs.build.outputs.repo_name }}
           COMMIT_MESSAGE: "chore: updated resume from ${{ github.sha }}"
         run: ./scripts/deploy-resume.sh
