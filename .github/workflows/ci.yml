@@ -86,7 +86,7 @@ jobs:
         env:
           FILE_PATH: ${{ env.FILE_PATH }}
           GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
-          DEST_USERNAME: ${{ vars.DEST_USERNAME }}
+          DEST_USERNAME: ${{ github.actor }}
           DEST_REPO_NAME: ${{ needs.build.outputs.repo_name }}
           COMMIT_MESSAGE: "chore: updated resume from ${{ github.sha }}"
         run: ./scripts/deploy-resume.sh
