@@ -8,9 +8,6 @@ if [ -z "$GITHUB_TOKEN" ] || [ -z "$DEST_USERNAME" ] || [ -z "$DEST_REPO_NAME" ]
     exit 1
 fi
 
-echo "Authenticate with GitHub CLI"
-gh auth login --with-token <<< "$GITHUB_TOKEN"
-
 REPO_CREATED=false
 if ! gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" > /dev/null 2>&1; then
   echo "Repository ${DEST_USERNAME}/${DEST_REPO_NAME} not found. Creating it..."
