@@ -4,7 +4,7 @@
 
 # 📄 Introduction </>
 
-Manage your resume in a single `resume.json` file. 
+Manage your resume in a single `resume.json` file.
 
 Automatically generate a website of a professional resume with downloadable PDF hosted for free via GitHub Pages.
 
@@ -48,31 +48,19 @@ Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/w
 2. Go to: **Settings** → **Secrets and variables** → **Actions**
    - Secrets
       - ACTIONS_PAT → your GitHub token from earlier
-   - Variables
-      - DEST_USERNAME → your GitHub username
-      - DEST_REPO_NAME → name of the live repo (e.g. my-resume)
-
-3. Create your live repo
-   -  Name it something like `my-resume`
-   -  Initialize with a README
-   -  Make it Public for now
-
-4. Go to destination repo **Settings** → **Pages** → Choose branch: **main** → **Save**
-
-5. Clone your **template** repo & set up
 
 ```bash
 git clone <your-template-repo-url>
 cd <your-repo-name>
-cp sample-resume.json resume.json
-git add resume.json
+cp sample-resume.json resumes/job1/resume.json
+git add resumes/job1/resume.json
 git commit -m "feat: initial commit"
 git push origin main
 ```
 
-All done you'll be able to access your live site at `https://<github_username>.github.io/<live_repo_name>`
+All done you'll be able to access your live site at `https://<github_username>.github.io/job1-resume`
 
-_Highly recommended to turn the live repo private afterwards and turn it public upon requested_
+_Highly recommended to turn the job1-resume repo private afterwards and turn it public upon requested_
 
 ## 💻 Run Locally (Optional)
 
