@@ -4,98 +4,93 @@
 
 # 📄 Introduction </>
 
-Manage your resume in a single `resume.json` file.
+Manage multiple resumes, with each getting its own `resume.json` file.
 
-Automatically generate a website of a professional resume with downloadable PDF hosted for free via GitHub Pages.
+Automatically generate a professional resume website with a downloadable PDF for each version, hosted for free via GitHub Pages.
 
 Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://github.com/skoenig/jsonresume-theme-engineering) + [GH Pages](https://pages.github.com/)
 
-Guided by: [ r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
+Guided by: [r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
 
 ## 🚀 Features
 
-- One Source of Truth - Just edit `resume.json`
-
-- Automatic Builds - Website generated on every push
-
-- Live Website - Hosted with GitHub Pages for free
-
-- Download PDF - Print-optimized formatting version included
-
-- Clean Theme - Minimal, readable and ATS-friendly
+- **Multi-Resume Support** - Manage different resumes for different roles in one place.
+- **One Source of Truth** - Just edit the `resume.json` for the resume you want to change.
+- **Automatic Builds & Deploys** - Websites are generated and deployed on every push.
+- **Live Websites** - Each resume is hosted with GitHub Pages for free in its own repository.
+- **Download PDF** - A print-optimized PDF version is included for each resume.
+- **Clean Theme** - Minimal, readable and ATS-friendly.
 
 ## 🔧 How It Works
 
-1. You update `resume.json`
+1.  You create a new folder inside the `resumes/` directory (e.g., `resumes/data-scientist/`).
+2.  You add a `resume.json` file to this new folder.
+3.  GitHub Actions automatically builds the site and PDF.
+4.  The output is deployed to a separate resume repository (e.g., `data-scientist-resume`) for hosting via GitHub Pages.
+5.  If you delete a resume folder, the corresponding repository is also deleted.
 
-2. GitHub Actions builds the site and PDF automatically
-
-3. Output is deployed to a separate resume [repository](https://github.com/opariffazman/sample-resume) for hosting via GitHub Pages
-
-    💡 This lets you keep the commit history private, and make only your live resume public whenever you need to
+💡 This lets you keep your resume source and its commit history private, while only making the live resume websites public.
 
 ## 🔑 Pre-requisites
 
-1. Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
-   - Name it: `resume_token`
-   - Scope: `repo` & `delete_repo`
-   - Copy and save the token
+1.  Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
+    -   Name it: `resume_token`
+    -   Scope: `repo` & `delete_repo`
+    -   Copy and save the token.
 
 # 🛠️ Set It Up
 
-1. Click `Use this template` (top of this repo) → Choose **Private**
+1.  Click `Use this template` (top of this repo) → Choose **Private**.
 
-2. Go to: **Settings** → **Secrets and variables** → **Actions**
-   - Secrets
-      - ACTIONS_PAT → your GitHub token from earlier
+2.  Go to: **Settings** → **Secrets and variables** → **Actions**
+    -   **Secrets**
+        -   `ACTIONS_PAT` → your GitHub token from earlier.
 
-3. Create your `resume.json`
-```bash
-git clone <your-repo-url>
-cd <your-repo-name>
-cp sample-resume.json resumes/job1/resume.json
-git add resumes/job1/resume.json
-git commit -m "feat: initial commit"
-git push origin main
-```
+3.  Create your first resume:
+    ```bash
+    git clone <your-repo-url>
+    cd <your-repo-name>
 
-All done you'll be able to access your live site at `https://<github_username>.github.io/job1-resume`
+    # Create a directory for your new resume
+    mkdir -p resumes/data-scientist
 
-_Highly recommended to turn the job1-resume repo private afterwards and turn it public upon requested_
+    # Copy the sample and start editing
+    cp sample-resume.json resumes/data-scientist/resume.json
+    ```
+
+4.  After editing `resumes/data-scientist/resume.json`, commit and push the changes:
+    ```bash
+    git add resumes/data-scientist/resume.json
+    git commit -m "feat: intial commit"
+    git push origin main
+    ```
+
+All done! You'll be able to access your live site at `https://<github_username>.github.io/data-scientist-resume`.
+
+_It's highly recommended to keep the generated resume repository (e.g., `data-scientist-resume`) private and only make it public when needed._
 
 ## 💻 Run Locally (Optional)
 
 Want to preview your resume before pushing?
 
-Powered by: [resumed](https://github.com/rbardini/resumed)
+1.  Install dependencies:
+    ```bash
+    npm install
+    npx playwright install chromium
+    ```
 
-1. Install dependencies
+2.  To build a specific resume, run the `build-resume.sh` script with the `FILE_PATH` environment variable pointing to your resume's directory:
+    ```bash
+    FILE_PATH=resumes/data-scientist ./scripts/build-resume.sh
+    ```
 
-```bash
-npm install
-npx playwright install chromium
-```
-
-2. Create your `resume.json`
-
-```bash
-cp sample-resume.json resume.json
-```
-
-3. Generate HTML & PDF
-
-```bash
-npm run export-html
-npm run export-pdf
-```
-
-You’ll find `index.html` and `resume.pdf` in the project folder.
+You’ll find the generated `index.html`, `resume.html`, and `resume.pdf` inside the `resumes/data-scientist/` folder.
 
 ## 🤖 Why This?
 
 This template gives you full control.
 
-Version it with Git, write in JSON, and generate polished outputs with developer tools.
+Version your resumes with Git, write them in JSON, and generate polished outputs with developer tools.
 
 ✅ No un-versioned resume edits
 
