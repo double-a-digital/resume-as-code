@@ -8,9 +8,13 @@ Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://
 
 Guided by: [r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
 
+# Behold...
+
+![resume-deployment](assets/resume-deployment.gif)
+
 ## Features
 
-- **Multi-Resume Support** - Manage different resumes for different roles or job application in one place.
+- **Multi-Resume Support** - Manage multiple resumes for different job roles in one place.
 - **One Source of Truth** - Just edit the `resume.json` for the resume you want to change.
 - **Automated Deployment** - Websites are generated and deployed on every resume push.
 - **Live Websites** - Each resume is hosted with GitHub Pages for free in its own repository.
