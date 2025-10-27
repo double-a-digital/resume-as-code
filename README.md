@@ -46,9 +46,9 @@ This lets you keep your resumes commit history private, while only making the li
 
 3.  Go to your template repo: **Settings** → **Secrets and variables** → **Actions**
     -   **Secrets**
-        -   `ACTIONS_PAT` → your GitHub token from earlier.
+        -   `ACTIONS_PAT` → your GitHub token.
 
-4.  Create your first resume by cloning your repo earlier:
+4.  Create your first resume by cloning your repo:
     ```bash
     git clone <your-repo-url>
     cd <your-repo-name>
