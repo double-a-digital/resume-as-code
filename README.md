@@ -44,7 +44,7 @@ This lets you keep your resumes commit history private, while only making the li
 
     ![resume-token](assets/resume-token.gif)
 
-3.  Go to: **Settings** → **Secrets and variables** → **Actions**
+3.  Go to your template repo: **Settings** → **Secrets and variables** → **Actions**
     -   **Secrets**
         -   `ACTIONS_PAT` → your GitHub token from earlier.
 
