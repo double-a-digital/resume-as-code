@@ -10,11 +10,27 @@ fi
 
 DEST_REPO_NAME=$(basename "$FILE_PATH")-resume
 
+# Read visibility from config.json, default to public if not specified
+CONFIG_FILE="$FILE_PATH/config.json"
+VISIBILITY="public"
+if [ -f "$CONFIG_FILE" ]; then
+  VISIBILITY=$(jq -r '.visibility // "public"' "$CONFIG_FILE")
+  echo "Repository visibility set to: $VISIBILITY"
+fi
+
 REPO_CREATED=false
 if ! gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" > /dev/null 2>&1; then
   echo "Repository ${DEST_USERNAME}/${DEST_REPO_NAME} not found. Creating it..."
-  gh repo create "${DEST_USERNAME}/${DEST_REPO_NAME}" --public
+  gh repo create "${DEST_USERNAME}/${DEST_REPO_NAME}" --"$VISIBILITY"
   REPO_CREATED=true
+else
+  echo "Repository exists. Checking if visibility needs to be updated..."
+  CURRENT_VISIBILITY=$(gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" --json visibility -q .visibility | tr '[:upper:]' '[:lower:]')
+  if [ "$CURRENT_VISIBILITY" != "$VISIBILITY" ]; then
+    echo "Updating repository visibility from $CURRENT_VISIBILITY to $VISIBILITY..."
+    gh repo edit "${DEST_USERNAME}/${DEST_REPO_NAME}" --visibility "$VISIBILITY"
+    echo "Repository visibility updated."
+  fi
 fi
 
 echo "Deploying resume..."
