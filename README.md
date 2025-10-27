@@ -1,6 +1,6 @@
 <img width="867" height="265" alt="resume-as-code" src="https://github.com/user-attachments/assets/ab42ab59-e8f3-49d9-a193-40007a9a99e0" />
 
-Manage multiple resume, with each getting its own `resume.json` file.
+Manage multiple resumes, with each getting its own dedicated website.
 
 Automatically generate a professional resume with a proper PDF version, hosted for free via GitHub Pages.
 
