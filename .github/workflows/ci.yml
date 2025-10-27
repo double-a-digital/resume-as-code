@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'resumes/**/resume.json'
+      - 'resumes/**/config.json'
   workflow_dispatch:
     inputs:
       file_path:
@@ -22,32 +23,17 @@ jobs:
         with:
           fetch-depth: 0 # Required to compare commits
 
+      - name: Make scripts executable
+        run: chmod +x scripts/detect-resume-changes.sh
+
       - name: Find changed resumes
         id: filter
         run: |
-          if [ "${{ github.event_name }}" == "push" ]; then
-            # Detect added/modified resumes
-            ADDED_MODIFIED=$(git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.event.after }} | grep 'resumes/.*/resume.json' | xargs -I {} dirname {} | sort -u)
-            if [ -z "$ADDED_MODIFIED" ]; then
-              JSON_BUILD="[]"
-            else
-              JSON_BUILD=$(echo "$ADDED_MODIFIED" | jq -R . | jq -cs .)
-            fi
-            echo "build_resumes=$JSON_BUILD" >> $GITHUB_OUTPUT
-
-            # Detect deleted resumes
-            DELETED=$(git diff --name-only --diff-filter=D ${{ github.event.before }} ${{ github.event.after }} | grep 'resumes/.*/resume.json' | xargs -I {} dirname {} | sort -u)
-            if [ -z "$DELETED" ]; then
-              JSON_DELETE="[]"
-            else
-              JSON_DELETE=$(echo "$DELETED" | jq -R . | jq -cs .)
-            fi
-            echo "delete_resumes=$JSON_DELETE" >> $GITHUB_OUTPUT
-          else
-            # For manual trigger, only build is supported
-            echo 'build_resumes=["${{ github.event.inputs.file_path }}"]' >> $GITHUB_OUTPUT
-            echo 'delete_resumes=[]' >> $GITHUB_OUTPUT
-          fi
+          ./scripts/detect-resume-changes.sh \
+            "${{ github.event_name }}" \
+            "${{ github.event.before }}" \
+            "${{ github.event.after }}" \
+            "${{ github.event.inputs.file_path }}" >> $GITHUB_OUTPUT
 
   build:
     runs-on: ubuntu-latest
