@@ -18,15 +18,6 @@ if [ -f "$CONFIG_FILE" ]; then
   echo "Repository visibility set to: $VISIBILITY"
 fi
 
-# Skip deployment for private repositories (GitHub Pages requires public repos on free accounts)
-if [ "$VISIBILITY" = "private" ]; then
-  echo "Skipping deployment: GitHub Pages is not available for private repositories on free accounts."
-  echo "To deploy this resume, either:"
-  echo "  1. Change visibility to 'public' in $CONFIG_FILE"
-  echo "  2. Upgrade to GitHub Pro to use GitHub Pages with private repositories"
-  exit 0
-fi
-
 REPO_CREATED=false
 if ! gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" > /dev/null 2>&1; then
   echo "Repository ${DEST_USERNAME}/${DEST_REPO_NAME} not found. Creating it..."
