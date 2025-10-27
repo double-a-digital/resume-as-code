@@ -39,6 +39,21 @@ else
     echo "Updating repository visibility from $CURRENT_VISIBILITY to $VISIBILITY..."
     gh repo edit "${DEST_USERNAME}/${DEST_REPO_NAME}" --visibility "$VISIBILITY" --accept-visibility-change-consequences
     echo "Repository visibility updated."
+
+    # If changing from private to public, we need to re-enable GitHub Pages
+    if [ "$CURRENT_VISIBILITY" = "private" ] && [ "$VISIBILITY" = "public" ]; then
+      echo "Re-enabling GitHub Pages after visibility change..."
+      sleep 5
+      gh api "repos/${DEST_USERNAME}/${DEST_REPO_NAME}/pages" \
+        --method POST \
+        -H "Accept: application/vnd.github+json" \
+        -f source[branch]='main' \
+        -f source[path]='/' 2>/dev/null || echo "GitHub Pages already enabled or will be enabled after push."
+    fi
+
+    # Give GitHub some time to process the visibility change
+    echo "Waiting for GitHub to process visibility change..."
+    sleep 5
   fi
 fi
 
