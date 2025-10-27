@@ -14,7 +14,7 @@ Guided by: [r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wi
 - **One Source of Truth** - Just edit the `resume.json` for the resume you want to change.
 - **Automated Deployment** - Websites are generated and deployed on every resume push.
 - **Live Websites** - Each resume is hosted with GitHub Pages for free in its own repository.
-- **Download PDF** - A print optimized version is included for each resume available as downloadable PDF.
+- **Download PDF** - A print optimized version is available as downloadable PDF.
 - **Clean Theme** - Minimal, readable and optimized to ATS standards.
 
 ## How It Works
