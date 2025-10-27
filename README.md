@@ -29,7 +29,7 @@ Guided by: [r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wi
 4.  The output is deployed to a separate resume repository (e.g., `swe-google-resume`) with GitHub Pages enabled.
 5.  If you delete a resume folder, the corresponding repository is also deleted.
 
-This lets you keep your resume source and its commit history private, while only making the live resume websites public.
+This lets you keep your resumes commit history private, while only making the live resume websites public.
 
 ## Setting up
 
@@ -78,7 +78,7 @@ Get [NodeJS](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 
     npx playwright install chromium
     ```
 
-2.  To build a specific resume, run the `build-resume.sh` script with the `FILE_PATH` environment variable pointing to your resume's directory:
+2.  To build a specific resume, run the `build-resume.sh` script with the `FILE_PATH` environment variable:
     ```bash
     FILE_PATH=resumes/data-scientist ./scripts/build-resume.sh
     ```
