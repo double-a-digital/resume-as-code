@@ -54,7 +54,7 @@ This lets you keep your resumes commit history private, while only making the li
     cd <your-repo-name>
 
     # Copy the sample and start editing
-    cp resumes/samples resumes/swe-google/ -r
+    cp resumes/sample resumes/swe-google/ -r
     ```
 
 5.  After editing `resumes/swe-google/resume.json`, commit and push the changes:
