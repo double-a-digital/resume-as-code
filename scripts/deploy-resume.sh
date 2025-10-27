@@ -28,7 +28,7 @@ else
   CURRENT_VISIBILITY=$(gh repo view "${DEST_USERNAME}/${DEST_REPO_NAME}" --json visibility -q .visibility | tr '[:upper:]' '[:lower:]')
   if [ "$CURRENT_VISIBILITY" != "$VISIBILITY" ]; then
     echo "Updating repository visibility from $CURRENT_VISIBILITY to $VISIBILITY..."
-    gh repo edit "${DEST_USERNAME}/${DEST_REPO_NAME}" --visibility "$VISIBILITY"
+    gh repo edit "${DEST_USERNAME}/${DEST_REPO_NAME}" --visibility "$VISIBILITY" --accept-visibility-change-consequences
     echo "Repository visibility updated."
   fi
 fi
