@@ -37,13 +37,13 @@ Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://
 
     ![secret](assets/secret.gif)
 
-5.  **Open codespaces**
+5.  **Create codespaces**
 
     ![codespaces](assets/codespaces.gif)
 
 6.  **Copy the sample resume**
 
-    Run below command in terminal:
+    Run below command in the codespace terminal:
 
     ```bash
     cp resumes/sample resumes/google/ -r
