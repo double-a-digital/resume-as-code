@@ -21,27 +21,29 @@ Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://
 
 ## Instructions
 
-1.  Fork this repo
+1.  **Fork this repo**
 
     ![fork](assets/fork.gif)
 
-2.  Enable GitHub Actions
+2.  **Enable Actions**
 
     ![actions](assets/actions.gif)
 
-3.  Create a Personal Access Token
+3.  **Create a Personal Access Token**
 
     ![token](assets/token.gif)
 
-4.  Add a new secret: `ACTIONS_PAT` with the token you just created
+4.  **Add a new actions secret**
 
     ![secret](assets/secret.gif)
 
-5.  Open codespaces for easy editing
+5.  **Open codespaces**
 
     ![codespaces](assets/codespaces.gif)
 
-6.  Copy the sample resume by running below command in the terminal
+6.  **Copy the sample resume**
+
+    Run below command in terminal:
 
     ```bash
     cp resumes/sample resumes/google/ -r
@@ -49,7 +51,7 @@ Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://
 
     ![terminal](assets/terminal.gif)
 
-7.  After editing `resumes/google/resume.json`, commit and push the changes
+7.  **Edit** your resume & **Push** the changes
 
     ![push](assets/push.gif)
 
