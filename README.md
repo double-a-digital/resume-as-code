@@ -6,11 +6,9 @@ Automatically generate a professional resume with a proper PDF version, hosted f
 
 Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://github.com/skoenig/jsonresume-theme-engineering) + [GH Pages](https://pages.github.com/)
 
-Guided by: [r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wiki/index/)
-
 # Behold...
 
-![resume-deployment](assets/resume-deployment.gif)
+![deployment](assets/deployment.gif)
 
 ## Features
 
@@ -21,52 +19,48 @@ Guided by: [r/EngineeringResumes](https://www.reddit.com/r/EngineeringResumes/wi
 - **Download PDF** - A print optimized version is available as downloadable PDF.
 - **Clean Theme** - Minimal, readable and optimized to ATS standards.
 
-## How It Works
+---
 
-1.  You copy the `resumes/sample` directory to a new one (e.g., `resumes/swe-google/`).
-2.  You modify the `resume.json` file in this folder with your actual details.
-3.  You push your code to GitHub so GitHub Actions automatically builds the site and PDF.
-4.  The output is deployed to a separate resume repository (e.g., `swe-google-resume`) with GitHub Pages enabled.
-5.  If you delete a resume folder, the corresponding repository is also deleted.
+## Instructions
 
-This lets you keep your resumes commit history private, while only making the live resume websites public.
+1.  Fork this repo
 
-## Setting up
+    ![fork](assets/fork.gif)
 
-1.  Click `Use this template` (top of this repo) → Choose **Private**.
+2.  Enable GitHub Actions
 
-    ![resume-template](assets/resume-template.gif)
+    ![actions](assets/actions.gif)
 
-2.  Go to: **Settings** → **Developer Settings** → **Personal Access Tokens** → Generate **new token (classic)**
-    -   Name it: `resume-token`
-    -   Scope: `repo` & `delete_repo`
-    -   Copy and save the token.
+3.  Create a Personal Access Token
 
-    ![resume-token](assets/resume-token.gif)
+    ![token](assets/token.gif)
 
-3.  Go to your template repo: **Settings** → **Secrets and variables** → **Actions**
-    -   **Secrets**
-        -   `ACTIONS_PAT` → your GitHub token.
+4.  Add a new secret: `ACTIONS_PAT` with the token you just created
 
-4.  Create your first resume by cloning your repo:
+    ![secret](assets/secret.gif)
+
+5.  Open codespaces for easy editing
+
+    ![codespaces](assets/codespaces.gif)
+
+6.  Copy the sample resume by running below command in the terminal
+
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
-
-    # Copy the sample and start editing
-    cp resumes/sample resumes/swe-google/ -r
+    cp resumes/sample resumes/google/ -r
     ```
 
-5.  After editing `resumes/swe-google/resume.json`, commit and push the changes:
-    ```bash
-    git add .
-    git commit -m "feat: initial commit"
-    git push origin main
-    ```
+    ![terminal](assets/terminal.gif)
 
-All done! You'll be able to access your live site at `https://<github_username>.github.io/swe-google-resume`.
+7.  After editing `resumes/google/resume.json`, commit and push the changes
 
-## Run Locally (Optional)
+    ![push](assets/push.gif)
+
+
+All done! You'll be able to access your live site at `https://<github_username>.github.io/google-resume`
+
+---
+
+## Advanced (Optional)
 
 Want to preview your resume before pushing?
 
@@ -85,12 +79,14 @@ Get [NodeJS](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 
 
 You’ll find the generated `index.html`, `resume.html`, and `resume.pdf` inside the `resumes/data-scientist/` folder.
 
-## Why?
+## Summary
 
-This template gives you full control.
+1.  You make a copy of the `resumes/sample` directory to a new one (e.g. `resumes/google/`).
+2.  You modify the `resume.json` file in this `resumes/google/` with your actual details.
+3.  You push your code to GitHub so GitHub Actions automatically builds the site and PDF.
+4.  The output is deployed to a separate resume repository (e.g., `google-resume`) with GitHub Pages enabled.
+5.  If you delete any resume folder, the corresponding repository is also deleted.
 
-Version your resumes with Git, write them in JSON, and generate polished outputs
+This lets you keep your resumes repository separate from the live resume websites.
 
-- [x] Versioned resume edits
-- [x] Free ATS ready resume hosting
-- [x] Resume-as-code like a pro
+Happy Job Hunting!
