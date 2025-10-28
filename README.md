@@ -19,8 +19,6 @@ Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://
 - **Download PDF** - A print optimized version is available as downloadable PDF.
 - **Clean Theme** - Minimal, readable and optimized to ATS standards.
 
----
-
 ## Instructions
 
 1.  Fork this repo
@@ -57,8 +55,6 @@ Powered by: [JSONResume](https://jsonresume.org/) + Engineering [Theme](https://
 
 
 All done! You'll be able to access your live site at `https://<github_username>.github.io/google-resume`
-
----
 
 ## Advanced (Optional)
 
